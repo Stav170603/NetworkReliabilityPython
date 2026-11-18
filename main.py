@@ -103,3 +103,37 @@ if relative_error is not None:
     print(f"Relative error (%): {relative_error * 100:.4f}%")
 else:
     print("Relative error cannot be calculated when S = 0.")
+
+
+
+# Edge Case Tests
+
+print("\nEdge Case Tests")
+
+R_zero = estimate_reliability(0, 1000)
+R_one = estimate_reliability(1, 1000)
+
+print("p = 0, Reliability:", R_zero)
+print("p = 1, Reliability:", R_one)
+
+print("p = 0 test passed:", R_zero == 0.0)
+print("p = 1 test passed:", R_one == 1.0)
+
+
+
+# Connectivity Tests
+
+
+print("\nConnectivity Tests")
+
+# Test 1: All three terminals are connected
+connected_edges = [(2, 10), (10, 9), (9, 18), (9, 8), (8, 7)]
+
+print("Connected network:", is_network_up(connected_edges))
+print("Connected test passed:", is_network_up(connected_edges) == True)
+
+# Test 2: Terminal 18 is disconnected
+disconnected_edges = [(2, 10), (10, 9), (9, 8), (8, 7)]
+
+print("Disconnected network:", is_network_up(disconnected_edges))
+print("Disconnected test passed:", is_network_up(disconnected_edges) == False)
